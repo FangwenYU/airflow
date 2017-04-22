@@ -8,11 +8,6 @@ FROM python:2.7.13
 ARG AIRFLOW_VERSION=1.8.0
 ARG AIRFLOW_HOME=/home/airflow
 
-RUN  pip install airflow[crypto,celery,postgres,hive,hdfs,jdbc,mysql,druid,async,password,s3]==$AIRFLOW_VERSION \
+RUN  apt-get -y update install git \
+     && pip install airflow[crypto,celery,postgres,hive,hdfs,jdbc,mysql,druid,async,password,s3]==$AIRFLOW_VERSION \
      && pip install celery[redis]==3.1.17
-
-WORKDIR /home/airflow
-
-EXPOSE 8080
-ENTRYPOINT ["airflow"]
-CMD ["webserver"]
