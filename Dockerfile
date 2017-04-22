@@ -6,9 +6,8 @@ FROM python:2.7.13
 #    apt-get -y install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
 
 ARG AIRFLOW_VERSION=1.8.0
-ARG AIRFLOW_HOME=/home/airflow
 
-RUN  apt-get -y update \ 
+RUN  apt-get -y update \
      && apt-get -y install git \
      && pip install airflow[crypto,celery,postgres,hive,hdfs,jdbc,mysql,druid,async,password,s3]==$AIRFLOW_VERSION \
      && pip install celery[redis]==3.1.17
